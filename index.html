@@ -29,7 +29,7 @@
     color:var(--ink);
     min-height:100%;
     display:flex;
-    align-items:center;
+    align-items:flex-start;      /* anchor to top so a tall card never gets clipped */
     justify-content:center;
     padding:6vh 5vw;
     overflow-x:hidden;
@@ -74,13 +74,17 @@
   .ln{
     padding-left:calc(var(--i,0) * 2.4ch);
     margin:.06em 0;
-    opacity:0;
-    transform:translateY(8px);
-    animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards;
-    animation-delay:calc(var(--d,0) * 1s);
     white-space:normal;
+    opacity:1;                   /* always readable, even if animations don't run */
   }
-  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: no-preference){
+    .ln{
+      opacity:0;
+      animation:rise .8s cubic-bezier(.2,.7,.2,1) both;
+      animation-delay:calc(var(--d,0) * 1s);
+    }
+  }
   .still{
     margin:1.6rem 0 1.7rem;
     padding:1.1rem 1.2rem 1.1rem 1.4rem;
@@ -90,8 +94,10 @@
     font-size:clamp(1.08rem,2.3vw,1.34rem);
     line-height:1.62;
     max-width:48ch;
-    opacity:0;transform:translateY(8px);
-    animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;
+    opacity:1;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .still{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) both;}
   }
   .v{
     font-family:"Fraunces",serif;font-style:italic;font-weight:600;
@@ -106,7 +112,10 @@
     margin-top:2.6rem;text-align:right;
     font-family:"Fraunces",serif;font-style:italic;
     color:var(--ink);opacity:.55;font-size:.95rem;letter-spacing:.04em;
-    opacity:0;animation:rise 1s ease forwards;animation-delay:6.6s;
+    opacity:1;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .sig{opacity:0;animation:rise 1s ease both;animation-delay:6.6s;}
   }
   @media (max-width:540px){
     .ln{padding-left:calc(var(--i,0) * 1.5ch)}
