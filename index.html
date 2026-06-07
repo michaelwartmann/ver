@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Ver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #e9e6df;
+    --ink-soft: #b8b4ac;
+    --warm: #e8b463;      /* the big VER — warmth of connection */
+    --warm-glow: #f6cd86;
+    --cool: #9fc6c4;      /* the small ver — tender states */
+    --bg0:#1a2030;
+    --bg1:#222b3a;
+    --bg2:#2c2733;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:"Cormorant Garamond", Georgia, serif;
+    background:
+      radial-gradient(1200px 700px at 78% -8%, rgba(120,150,160,.18), transparent 60%),
+      radial-gradient(900px 600px at 12% 110%, rgba(120,80,90,.20), transparent 60%),
+      linear-gradient(160deg, var(--bg0) 0%, var(--bg1) 48%, var(--bg2) 100%);
+    color:var(--ink);
+    min-height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:6vh 5vw;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* drifting clouds — a turned sea */
+  .cloud{position:fixed;border-radius:50%;filter:blur(60px);opacity:.16;pointer-events:none;animation:drift linear infinite}
+  .c1{width:520px;height:240px;background:#7d93a8;top:6%;left:-12%;animation-duration:90s}
+  .c2{width:600px;height:280px;background:#6e6478;bottom:4%;right:-16%;animation-duration:120s;animation-direction:reverse}
+  .c3{width:380px;height:180px;background:#8aa0a0;top:46%;left:30%;animation-duration:150s;opacity:.10}
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(60px)}}
+
+  /* fine rain */
+  .rain{position:fixed;inset:0;pointer-events:none;opacity:.20;
+    background-image:repeating-linear-gradient(101deg,
+      transparent 0 22px, rgba(220,230,235,.5) 22px 23px);
+    background-size:auto 100%;
+    animation:fall .9s linear infinite}
+  @keyframes fall{from{background-position:0 0}to{background-position:18px 120px}}
+
+  .card{
+    position:relative;
+    width:min(760px,100%);
+    padding:clamp(28px,5vw,64px);
+    border-radius:4px;
+    background:linear-gradient(165deg, rgba(20,25,36,.55), rgba(28,24,34,.42));
+    backdrop-filter:blur(3px);
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+
+  .eyebrow{
+    font-family:"Fraunces",serif;font-style:italic;
+    letter-spacing:.42em;text-transform:uppercase;
+    font-size:.7rem;color:var(--cool);opacity:.75;
+    margin-bottom:.4rem;padding-left:.2em;
+  }
+  h1{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:600;
+    font-size:clamp(2.6rem,7vw,4.4rem);line-height:.92;
+    color:var(--warm-glow);
+    text-shadow:0 0 38px rgba(232,180,99,.30);
+    margin-bottom:2.2rem;
+  }
+  h1 .dash{color:var(--ink);opacity:.4;font-weight:400}
+
+  .poem{font-size:clamp(1.18rem,2.5vw,1.5rem);line-height:1.5}
+
+  .ln{
+    padding-left:calc(var(--i,0) * 2.4ch);
+    text-indent:0;
+    margin:.06em 0;
+    opacity:0;
+    transform:translateY(8px);
+    animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay:calc(var(--d,0) * 1s);
+  }
+  /* wrapped continuation lines hang under their indent */
+  .ln{white-space:normal}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* the still center */
+  .still{
+    margin:1.6rem 0 1.7rem;
+    padding:1.1rem 1.2rem 1.1rem 1.4rem;
+    border-left:2px solid rgba(159,198,196,.35);
+    font-style:italic;
+    color:#dfe7e4;
+    font-size:clamp(1.08rem,2.3vw,1.34rem);
+    line-height:1.62;
+    max-width:46ch;
+    opacity:0;transform:translateY(8px);
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  .v{ /* big VER — warmth */
+    font-family:"Fraunces",serif;font-style:italic;font-weight:600;
+    color:var(--warm);
+    text-shadow:0 0 18px rgba(232,180,99,.35);
+    letter-spacing:.01em;
+  }
+  .vs{ /* small ver — tender */
+    color:var(--cool);font-style:italic;
+  }
+
+  .close{margin-top:2rem}
+  .close .ln{font-style:italic}
+
+  .sig{
+    margin-top:2.6rem;text-align:right;
+    font-family:"Fraunces",serif;font-style:italic;
+    color:var(--ink);opacity:.55;font-size:.95rem;letter-spacing:.04em;
+    opacity:0;animation:rise 1s ease forwards;animation-delay:6.4s;
+  }
+
+  @media (max-width:540px){
+    .ln{padding-left:calc(var(--i,0) * 1.5ch)}
+    .poem{font-size:1.1rem}
+  }
+</style>
+</head>
+<body>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="rain"></div>
+
+  <main class="card">
+    <p class="eyebrow">eine Bewegung, schräg</p>
+    <h1>Das <span class="v">Ver</span><span class="dash">-</span></h1>
+
+    <div class="poem">
+      <!-- Strophe A: hinaus ins Verlaufen -->
+      <div class="ln" style="--i:0;--d:.2">Das <span class="v">VER</span>- ist ein <span class="v">VER</span>tracktes Ding,</div>
+      <div class="ln" style="--i:1;--d:.5">nie ganz gerade,</div>
+      <div class="ln" style="--i:2;--d:.8">sondern <span class="v">VER</span>zogen und diagonal.</div>
+      <div class="ln" style="--i:3;--d:1.1">Ich <span class="v">VER</span>tue mich gern mit dem ver —</div>
+      <div class="ln" style="--i:4;--d:1.4">hab schon <span class="v">VER</span>fahrenstechnik studiert</div>
+      <div class="ln" style="--i:5;--d:1.7">und mich immer wieder schräg <span class="v">VER</span>laufen.</div>
+
+      <!-- Strophe B: das stille Zentrum -->
+      <div class="still" style="animation-delay:2.1s">
+        So wie gestern: da hab ich mich in aller Schönheit <span class="v">VER</span>laufen,
+        mit dir — <span class="vs">ver</span>zückendes, <span class="vs">ver</span>borgen weises Wesen,
+        mit deinen <span class="vs">ver</span>zaubernden Körperteilen,
+        deiner <span class="vs">ver</span>spielten Art des <span class="vs">Ver</span>meidens von <span class="vs">Ver</span>sprechen,
+        dem Lieber-im-Moment-sich-<span class="vs">Ver</span>lieren,
+        weil alles so <span class="vs">ver</span>gänglich ist —
+        außer meiner <span class="vs">Ver</span>knüpfung zu dir,
+        der ich auch in <span class="vs">Ver</span>unsicherung <span class="vs">ver</span>traue.
+      </div>
+
+      <!-- Strophe C: die Bank, ganz draußen — dann zurück zum Ankommen -->
+      <div class="ln" style="--i:6;--d:2.6">Bis zu einer mit Vogelscheiße <span class="v">VER</span>kackten Bank,</div>
+      <div class="ln" style="--i:6;--d:2.9">im Wind und Regen, mit Wolken, die einem <span class="vs">ver</span>drehten Meer <span class="vs">ver</span>gleichbar sind.</div>
+      <div class="ln" style="--i:5;--d:3.2">Alles ist schon perfekt — oder auch nicht, und muss nicht <span class="vs">ver</span>bessert werden.</div>
+      <div class="ln" style="--i:4;--d:3.5">Keine Volksbank. Eine Holzbank.</div>
+      <div class="ln" style="--i:3;--d:3.8">Zum Glück ist da keiner von uns beiden <span class="v">VER</span>kommen —</div>
+      <div class="ln" style="--i:2;--d:4.1">sondern fast oder gänzlich (an)gekommen,</div>
+      <div class="ln" style="--i:0;--d:4.4">aber bei sich selbst, in aller Tiefe —</div>
+      <div class="ln" style="--i:1;--d:4.7">auch wenn man sich im Abgrund <span class="vs">ver</span>lieren kann, bei den eigenen Dämonen —</div>
+      <div class="ln" style="--i:2;--d:5.0">ohne sich, oder sich im anderen, zu <span class="v">VER</span>lieren</div>
+      <div class="ln" style="--i:4;--d:5.3">beim <span class="v">VER</span>weilen mit <span class="vs">ver</span>zitterten Lippen, die nur ein Schirm <span class="vs">ver</span>treiben kann.</div>
+
+      <!-- Strophe D: der Bogen schließt sich -->
+      <div class="close">
+        <div class="ln" style="--i:2;--d:5.8">So ein <span class="v">VER</span>bunden-Sein, ein <span class="vs">Ver</span>gnügen mit dir,</div>
+        <div class="ln" style="--i:3;--d:6.0">wird nie <span class="v">VER</span>gessen</div>
+        <div class="ln" style="--i:4;--d:6.2">und nie ganz <span class="v">VER</span>standen.</div>
+      </div>
+    </div>
+
+    <div class="sig">— für Kim, im Regen</div>
+  </main>
+</body>
+</html>
